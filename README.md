@@ -1,1 +1,1 @@
-# djangopractical
+# PRACTICE DJANGO
