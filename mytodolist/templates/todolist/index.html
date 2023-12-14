@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+
+<img 
+  src="{% static 'images/ron.jpg' %}"
+  height="400px"
+  width="1800px">
+<div class="row m-auto mt-3 bg-primary">
+  <div class="col-6">
+    <div class="text-center p-2 fw-bolder ">
+      Pending Task
+      <hr />
+      
+      {% for i in task %}
+        <div class="p-2 bg-light m-1">
+            {{i.task_title}}
+            <br/>
+            <small>
+              {{i.task_description|safe}} 
+              Created at {{i.task_created_on}}
+                
+            </small>
+            <a href="{% url 'delete-task' i.taskid %}">
+              <i class="fa-solid fa-circle-minus float-end m-2"></i>
+            </a>
+            <i class="fa-solid fa-check float-end m-2"></i>
+            <i class="fa-regular fa-floppy-disk float-end m-2"></i>
+            <a href="{% url 'edit-task' i.taskid %}">
+              <i class="fa-solid fa-pen-to-square float-end m-2"></i>
+            </a>
+            
+        </div>
+        
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-6 bg-danger">
+    <div class="text-center p-2 fw-bolder">
+        add new task
+        <hr>
+    </div>
+    <div>
+        <form method="POST">
+            {% csrf_token %}  
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="bla" name="bla" placeholder="Enter ">
+                <label for="bla">New Task</i></label>
+            </div>
+            <!--  -->
+            <textarea id="editor" name="editor"></textarea>
+            <!--  -->
+            <div class="text-center">
+                <button class="btn btn-bm btn-warning" type="submit">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

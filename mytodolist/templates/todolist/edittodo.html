@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+
+{% block content%}
+
+    <div class="container">
+        <div class="col-12 bg-light mb-3 p-3">
+            Editing Task : {{task.task_title}}
+        </div>
+        <form method="POST">
+            {% csrf_token %}  
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="bla" name="bla" placeholder="Enter " value="{{ task.task_title}}">
+                <label for="bla">New Task</i></label>
+            </div>
+            <!--  -->
+            <div class="mb-3">
+                <label for="editor">Task Description</label>
+                <textarea id="editor" name="editor"> {{task.task_description}} </textarea>
+            </div>
+            <!-- <textarea id="editor" name="editor"> {{task.task_description}} </textarea> -->
+            <!--  -->
+            <div class="text-center">
+                <button class="btn btn-bm btn-warning" type="submit">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
